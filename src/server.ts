@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import filePath from "./filePath";
+import { Client } from "pg";
 
 const app = express();
+
 
 /** Parses JSON data in a request automatically */
 app.use(express.json());
@@ -14,7 +15,15 @@ app.use(cors());
 dotenv.config();
 
 // use the environment variable PORT, or 4000 as a fallback
-const PORT_NUMBER = process.env.PORT ?? 4000;
+const PORT_NUMBER = process.env.PORT ?? 8000;
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
 
 
 app.listen(PORT_NUMBER, () => {
