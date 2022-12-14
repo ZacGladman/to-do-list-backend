@@ -28,19 +28,17 @@ app.post("/todos", async (req, res) => {
     try {
       console.log('trying query')
       const newTodo = await client.query(sqlQuery, [todoInfo.description, todoInfo.due_date, todoInfo.importance, todoInfo.status]);
-      res.status(200).json(newTodo)
       console.log('query completed')
+      res.status(200).json(newTodo.rows)
     } catch (error: any) {
       console.log('caught error')
       console.error(error)
     }
-    
-
-
-
 })
 
 // get all to-dos
+
+
 // get one to-do
 // update a to-do
 // delete a to-do
