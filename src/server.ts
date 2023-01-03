@@ -94,7 +94,7 @@ app.delete("/items/:id", async (req, res) => {
 });
 
 // use the environment variable PORT, or 4000 as a fallback
-const PORT_NUMBER = process.env.PORT ?? 8000;
+const PORT_NUMBER = process.env.baseUrl ?? 8000;
 
 app.listen(PORT_NUMBER, () => {
   console.log(`Server is listening on port ${PORT_NUMBER}!`);
