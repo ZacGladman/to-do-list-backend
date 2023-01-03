@@ -12,7 +12,7 @@ app.use(cors());
 
 // create a to-do
 
-app.post("/todos", async (req, res) => {
+app.post("/items", async (req, res) => {
   const todoInfo = req.body;
   const sqlQuery =
     "INSERT INTO to_do (description, due_date, importance, status) VALUES ($1, $2, $3, $4) RETURNING *";
@@ -33,7 +33,7 @@ app.post("/todos", async (req, res) => {
 
 // get all to-dos
 
-app.get("/todos", async (req, res) => {
+app.get("/items", async (req, res) => {
   const sqlQuery = "SELECT * FROM to_do";
   try {
     const allTodos = await client.query(sqlQuery);
@@ -45,7 +45,7 @@ app.get("/todos", async (req, res) => {
 
 // get one to-do
 
-app.get("/todos/:id", async (req, res) => {
+app.get("/items/:id", async (req, res) => {
   const sqlQuery = "SELECT * FROM to_do WHERE id = $1";
   const id = req.params.id;
 
@@ -59,7 +59,7 @@ app.get("/todos/:id", async (req, res) => {
 
 // update a to-do
 
-app.put("/todos/:id", async (req, res) => {
+app.put("/items/:id", async (req, res) => {
   const newInfo = req.body;
   const sqlQuery =
     "UPDATE to_do SET description = $1, due_date = $2, importance = $3, status = $4 WHERE id = $5 RETURNING *";
@@ -81,7 +81,7 @@ app.put("/todos/:id", async (req, res) => {
 
 // delete a to-do
 
-app.delete("/todos/:id", async (req, res) => {
+app.delete("/items/:id", async (req, res) => {
   const id = req.params.id;
   const sqlQuery = "DELETE FROM to_do WHERE id = $1";
 
