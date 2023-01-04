@@ -20,7 +20,7 @@ app.post("/items", async (req, res) => {
   try {
     const newTodo = await client.query(sqlQuery, [
       todoInfo.description,
-      todoInfo.due_date,
+      `${todoInfo.due_date}`,
       todoInfo.importance,
       todoInfo.status,
     ]);
