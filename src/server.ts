@@ -25,6 +25,7 @@ app.post("/items", async (req, res) => {
       todoInfo.status,
     ]);
     res.status(200).json(newTodo.rows[0]);
+    console.log(res.json(newTodo.rows[0]));
   } catch (error: unknown) {
     console.log("caught error");
     console.error(error);
