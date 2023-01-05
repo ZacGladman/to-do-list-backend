@@ -20,12 +20,11 @@ app.post("/items", async (req, res) => {
   try {
     const newTodo = await client.query(sqlQuery, [
       todoInfo.description,
-      `${todoInfo.due_date}`,
+      todoInfo.due_date,
       todoInfo.importance,
       todoInfo.status,
     ]);
     res.status(200).json(newTodo.rows[0]);
-    console.log(res.json(newTodo.rows[0]));
   } catch (error: unknown) {
     console.log("caught error");
     console.error(error);
